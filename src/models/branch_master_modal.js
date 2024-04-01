@@ -38,11 +38,11 @@ const BranchMasterSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
-        inward: {
+        inward2: {
             type: Number,
             required: true
         },
-        outward: {
+        outward2: {
             type: Number,
             required: true
         },

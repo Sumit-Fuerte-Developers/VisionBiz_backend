@@ -42,11 +42,11 @@ const AddTextMasterSchema = new mongoose.Schema({
         required: true,
       },
       posted: {
-        type: Boolean,
+        type: String,
         required: true,
       },
       poPur: {
-        type: Boolean,
+        type: String,
         required: true,
       },
       addTaxDescription: {

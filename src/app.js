@@ -7,7 +7,7 @@ const app = express();
 
 const cors = require('cors'); 
 
-const PORT = 9001;
+const PORT = 9000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -127,9 +127,44 @@ app.use("/api/product_class", ProductClassRoute);
 const DepartmentMasterRoute = require("./routes/department_master_routes");
 app.use("/api/department_master", DepartmentMasterRoute);
 
+
+// party wise Product rate
+const PartyWiseProductrouter = require("./routes/party_wise_product_rate_routes");
+app.use("/api/party_wise_product_rate", PartyWiseProductrouter);
+
+const partywiseProductRateDiscountrouter = require("./routes/party_wise_product_rate_discount_routes");
+app.use("/api/party_wise_product_rate_discount", partywiseProductRateDiscountrouter);
+
+
+const partywiseProductGroupRateDiscountController = require("./routes/party_wise_productGroup_wiseDiscount_routes");
+app.use("/api/party_wise_product_rate_discount", partywiseProductGroupRateDiscountController);
+
 // UOM Master
 const UOMMasterRoute = require("./routes/uom_master_routes");
 app.use("/api/uom_master", UOMMasterRoute);
+
+const ProductWisepartyRateDiscountrouter = require("./routes/productWisePartyRateDiscount_routes");
+app.use("/api/Product_wise_party_rate_discount", ProductWisepartyRateDiscountrouter);
+
+
+
+// For Measurement
+const MeasurementRoute = require("./routes/measurement_routes");
+app.use("/api/measurement", MeasurementRoute);
+
+// For HSN
+const HSNRoute = require("./routes/hsn_routes");
+app.use("/api/HSN", HSNRoute);
+
+// For TexCode
+const TexCodeRoute = require("./routes/tax_code_routes");
+app.use("/api/TexCode", TexCodeRoute);
+
+// For Product Master
+const ProductMasterRoute = require("./routes/product_master_routes");
+app.use("/api/ProductMaster", ProductMasterRoute);
+
+
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });

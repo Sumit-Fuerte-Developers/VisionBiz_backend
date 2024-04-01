@@ -6,7 +6,7 @@ const AccountMasterController = {
         try {
             const newAccount = new AccountMaster(req.body);
             await newAccount.save();
-            res.status(201).json(newAccount);
+            res.status(201).json({message:'created successfully',newAccount});
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
