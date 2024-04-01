@@ -1,16 +1,19 @@
-const Party = require('../models/partyModel');
+const Party = require('../models/party_model');
+
+
+const PartyController={
 
 // Controller to create a new party
 createParty : async (req, res) => {
     try {
-        const { partyName, groupName, openingBalance } = req.body;
-        const party = new Party({ partyName, groupName, openingBalance });
+        const { partyName, groupname, openingBalance } = req.body;
+        const party = new Party({ partyName, groupname, openingBalance });
         await party.save();
         res.status(201).json({ message: 'Party created successfully', data: party });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+},
 
 // Controller to get all parties
 getAllParties : async (req, res) => {
@@ -20,7 +23,7 @@ getAllParties : async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+},
 
 // Controller to get a specific party by ID
 getPartyById : async (req, res) => {
@@ -33,10 +36,10 @@ getPartyById : async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+},
 
 // Controller to update a party by ID
-updateParty = async (req, res) => {
+updateParty : async (req, res) => {
     try {
         const { partyName, groupName, openingBalance } = req.body;
         const updatedParty = await Party.findByIdAndUpdate(req.params.id, { partyName, groupName, openingBalance }, { new: true });
@@ -47,10 +50,10 @@ updateParty = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+},
 
 // Controller to delete a party by ID
-deleteParty = async (req, res) => {
+deleteParty : async (req, res) => {
     try {
         const deletedParty = await Party.findByIdAndDelete(req.params.id);
         if (!deletedParty) {
@@ -60,4 +63,6 @@ deleteParty = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+},
 };
+module.exports = PartyController;

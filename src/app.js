@@ -89,6 +89,26 @@ app.use("/api/branch_master", BranchMasterRoute);
 const DebatorOpningrouter = require("./routes/debator_opning_routes");
 app.use("/api/debator_opning", DebatorOpningrouter);
 
+const creaditorsrouter = require("./routes/creaditars_opening_routes");
+app.use("/api/creditors_opening", creaditorsrouter);
+
+const partyrouter = require("./routes/party_routes");
+app.use("/api/party", partyrouter);
+
+const BankRecorouter = require("./routes/bank_reco_routes");
+app.use("/api/bank_reco", BankRecorouter);
+
+const UpdatePartyWIserouter = require("./routes/update_party_wise_formdata_routes");
+app.use("/api/update", UpdatePartyWIserouter);
+
+
+const openingImeirouter = require("./routes/opening_imei_routes");
+app.use("/api/opening_imei", openingImeirouter);
+
+// For Item
+const ItemRoute = require("./routes/item_routes");
+app.use("/api/item",ItemRoute);
+
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });

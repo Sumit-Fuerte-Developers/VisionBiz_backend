@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const DebtorOpeningSchema = new mongoose.Schema({
+const CreaditorsOpeningSchema = new mongoose.Schema({
     partyName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'party',
@@ -14,4 +14,4 @@ const DebtorOpeningSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('debtorOpening', DebtorOpeningSchema);
+module.exports = mongoose.model('creditorsOpening', CreaditorsOpeningSchema);
