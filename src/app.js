@@ -4,9 +4,10 @@ require('dotenv').config();
 const app = express();
 
 
+
 const cors = require('cors'); 
 
-const PORT = 9000;
+const PORT = 9001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -109,6 +110,26 @@ app.use("/api/opening_imei", openingImeirouter);
 const ItemRoute = require("./routes/item_routes");
 app.use("/api/item",ItemRoute);
 
+
+// Store Master
+const StoreMasterRoute = require("./routes/store_master_routes");
+app.use("/api/store_master", StoreMasterRoute);
+
+// Product Group Master
+const ProductGroupMasterRoute = require("./routes/product_groups_master_routes");
+app.use("/api/product_group_master", ProductGroupMasterRoute);
+
+// Product Class 
+const ProductClassRoute = require("./routes/product_class_routes");
+app.use("/api/product_class", ProductClassRoute);
+
+// Department Master
+const DepartmentMasterRoute = require("./routes/department_master_routes");
+app.use("/api/department_master", DepartmentMasterRoute);
+
+// UOM Master
+const UOMMasterRoute = require("./routes/uom_master_routes");
+app.use("/api/uom_master", UOMMasterRoute);
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
