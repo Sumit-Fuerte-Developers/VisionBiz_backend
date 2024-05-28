@@ -1,31 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+const ejs = require('ejs');
 require('dotenv').config();
-const app = express();
-
-
-
 const cors = require('cors'); 
 
-const PORT = 9000;
+const app = express();
+const PORT = process.env.PORT || 9000;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Enable CORS for all routes
+app.set('view engine', 'ejs');
 app.use(cors());
 
-mongoose.connect('mongodb+srv://vishalfuerte978:21112002123@cluster0.vahtrpp.mongodb.net/visonbiz?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.vahtrpp.mongodb.net/visonbiz?retryWrites=true&w=majority&appName=Cluster0`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
 .then(async () => {
-    console.log('Connection successful');
-    // add your routes here
-    app.get('/', (req, res) => {
-      return res.send('hello from home page 123');
-    });
+  console.log('Connection successful');
+  app.get('/', (req, res) => {
+    return res.render('homepage');
+  });
 }).catch((err) => {
-    console.error('Connection error:', err);
+  console.error('Connection error:', err);
 });
 
 const Companyrouter = require("./routes/create_company_routes");
@@ -189,5 +187,5 @@ app.use("/api/company_signIn", CompanyLoginRoutes);
 
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
