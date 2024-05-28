@@ -41,8 +41,15 @@ const PartyGroupMasterController = {
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
+  },
 
-
+  getAddPartyGroupMasterbyid:async(req,res)=>{
+    try {
+        const allAddPartyGroupMaster = await AddPartyGroupMaster.findById(req.params.id);
+        res.json({ message: 'AddCategoryMaster data', data: allAddPartyGroupMaster });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
   },
 
   deleteAddPartyGroupMaster:async(req,res)=>{

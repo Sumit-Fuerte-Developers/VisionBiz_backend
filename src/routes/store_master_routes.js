@@ -4,7 +4,7 @@ const StoreMasterController = require('../controllers/store_master_controller');
 const verifyToken = require("../middleware/verifyToken");
 
 // Create a new StoreMaster
-StoreMasterRoute.post('/create_store', verifyToken, StoreMasterController.createStoreMaster);
+StoreMasterRoute.post('/create_store', StoreMasterController.createStoreMaster);
 
 // Get all StoreMaster
 StoreMasterRoute.get('/show_store', verifyToken, StoreMasterController.getAllStoreMaster);

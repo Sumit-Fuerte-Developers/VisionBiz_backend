@@ -164,6 +164,29 @@ app.use("/api/TexCode", TexCodeRoute);
 const ProductMasterRoute = require("./routes/product_master_routes");
 app.use("/api/ProductMaster", ProductMasterRoute);
 
+// For Bank Master
+const BankMasterRoute = require('./routes/bank_master_routes');
+app.use("/api/bankMaster", BankMasterRoute);
+
+// For Narration Master
+const NarrationMasterRoute = require('./routes/narration_master_routes');
+app.use("/api/narrationMaster", NarrationMasterRoute);
+
+// For Broker Master
+const BrokerMasterRoute = require('./routes/broker_master_routes');
+app.use("/api/brokerMaster", BrokerMasterRoute);
+
+// For Account Group
+const Accountgroup = require("./routes/account_group_routes");
+app.use("/api/accountGroup", Accountgroup);
+
+// const groupReverse = require("./routes/group_if_reverse_route");
+// app.use("/api/accountGroupReverse", groupReverse);
+
+const CompanyLoginRoutes = require("./routes/CompanyLogin_routes");
+app.use("/api/company_signIn", CompanyLoginRoutes);
+
+
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);

@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 
 const UOMMasterSchema = new mongoose.Schema(
     {
-        UOM_Desc: {
-            type: String,
-            required: true
-        },
-        UQC: {
+        UOM: {
             type: String,
             required: true
         },

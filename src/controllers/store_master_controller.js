@@ -7,7 +7,7 @@ const StoreMasterController = {
         try {
             const newStoreMaster = new StoreMaster(req.body);
             await newStoreMaster.save();
-            res.status(201).json(newStoreMaster);
+            res.status(201).json({ message: 'Store created successfully', data: newStoreMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -47,7 +47,7 @@ const StoreMasterController = {
             if (!updatedStoreMaster) {
                 return res.status(404).json({ error: 'Store not found' });
             }
-            res.status(200).json(updatedStoreMaster);
+            res.status(200).json({ message: 'Store updated successfully', data: updatedStoreMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });

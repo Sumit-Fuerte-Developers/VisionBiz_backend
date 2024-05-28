@@ -9,6 +9,7 @@ CategoryMasterrouter.post('/add_category_master',verifyToken, CategoryMasterCont
 CategoryMasterrouter.patch('/edit_category_master/:id',verifyToken,CategoryMasterController.editAddcategoryMaster);
 CategoryMasterrouter.get('/show_category_master/',verifyToken, CategoryMasterController.getAddcategoryMaster);
 CategoryMasterrouter.delete('/delete_category_master/:id',verifyToken, CategoryMasterController.deleteAddCategoryMaster);
+CategoryMasterrouter.get('/show_category_master/:id',verifyToken, CategoryMasterController.getAddcategoryMasterById);
 
 
 module.exports = CategoryMasterrouter;

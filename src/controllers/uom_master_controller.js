@@ -6,7 +6,7 @@ const UOMMasterController = {
         try {
             const newUOMMaster = new UOMMaster(req.body);
             await newUOMMaster.save();
-            res.status(201).json(newUOMMaster);
+            res.status(201).json({ message: 'UOM Master created successfully', data: newUOMMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -45,7 +45,7 @@ const UOMMasterController = {
             if (!updatedUOMMaster) {
                 return res.status(404).json({ error: 'UOM Master not found' });
             }
-            res.status(200).json(updatedUOMMaster);
+            res.status(200).json({ message: 'UOM Master updated successfully', data: updatedUOMMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });

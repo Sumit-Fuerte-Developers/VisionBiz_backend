@@ -8,15 +8,16 @@ const ShadeMasterSchema = new mongoose.Schema(
         },
         Colour: {
             type: String,
-            required: true
+            // required: true
         },
         Grade: {
             type: String,
-            required: true
+            // required: true
         },
         Rate: {
             type: Number,
-            required: true
+            // required: true
+            default: 0,
         },
     },
     {

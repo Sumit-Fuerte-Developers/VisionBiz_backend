@@ -4,7 +4,7 @@ const ProductClassController = require('../controllers/product_class_controller'
 const verifyToken = require("../middleware/verifyToken");
 
 // Create a new ProductClass
-ProductClassRoute.post('/create_product_class', verifyToken, ProductClassController.createProductClass);
+ProductClassRoute.post('/create_product_class', ProductClassController.createProductClass);
 
 // Get all ProductClass
 ProductClassRoute.get('/show_product_class', verifyToken, ProductClassController.getAllProductClasses);

@@ -7,27 +7,33 @@ const TDSSchema = new mongoose.Schema({
     },
     limit: {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     tdsPercentage: {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     basicTdsPercentage: {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     surchargePercentage: {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     cessPercentage: {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     shec: {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     postedAccount: {
         type: String,

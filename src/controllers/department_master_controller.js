@@ -6,7 +6,7 @@ const DepartmentMasterController = {
         try {
             const newDepartmentMaster = new DepartmentMaster(req.body);
             await newDepartmentMaster.save();
-            res.status(201).json(newDepartmentMaster);
+            res.status(201).json({ message: 'Department Master created successfully', data: newDepartmentMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -45,7 +45,7 @@ const DepartmentMasterController = {
             if (!updatedDepartmentMaster) {
                 return res.status(404).json({ error: 'Department Master not found' });
             }
-            res.status(200).json(updatedDepartmentMaster);
+            res.status(200).json({ message: 'Department Master updated successfully', data: updatedDepartmentMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -59,7 +59,7 @@ const DepartmentMasterController = {
             if (!deletedDepartmentMaster) {
                 return res.status(404).json({ error: 'Department Master not found' });
             }
-            res.status(200).json({ message: 'Department Master deleted successfully' });
+            res.status(200).json({ message: 'Department Master deleted successfully',data: deletedDepartmentMaster});
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });

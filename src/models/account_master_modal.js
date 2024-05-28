@@ -1,109 +1,118 @@
+const { Decimal128 } = require("mongodb");
 const mongoose = require("mongoose");
 
 const AccountMasterSchema = new mongoose.Schema({
-    Account: {
+    FLAG: {
         type: String,
-        enum: ['option1', 'option2', 'option3'],
-        required: true
+        maxlength: 1,
+        // required:true
     },
-    Group: {
+    aGroup: {
+        type: Number,ref: 'AccMaster',
+        maxlength: 5,
+        // required: true
+    },
+    GroupName: {
+        type: String,ref: 'AccMaster',
+        maxlength: 50,
+        //required: true
+    },
+    PartyCode: {
         type: String,
-        required: true
-    },
-    Opening: {
-        type: String,
-        enum: ['option4', 'option5', 'option6'],
-        required: true
-    },
-    Closing: {
-        type: String,
-        required: true
-    },
-    Budget: {
-        type: Number,
-        required: true
-    },
-    Schedule: {
-        type: Boolean,
-        required: true
-    },
-    ECC_NO: {
-        type: Number,
-        required: true
-    },
-    EX_Reg_NO: {
-        type: Number,
-        required: true
-    },
-    Division: {
-        type: String,
-        required: true
-    },
-    Commission_Rate: {
-        type: Number,
-        required: true
-    },
-    Range: {
-        type: Number,
-        required: true
-    },
-    LBT_NO: {
-        type: Number,
-        required: true
-    },
-    IFSC_Code: {
-        type: Number,
-        required: true
-    },
-    Bank_Name: {
-        type: String,
-        required: true
-    },
-    Branch: {
-        type: String,
-        required: true
-    },
-    Bank_Account_No: {
-        type: Number,
         unique: true,
-        required: true,
+        
     },
-    OMS: {
-        type: Boolean,
-        required: true
-    },
-    UNR: {
-        type: Boolean,
-        required: true
-    },
-    Service_Tax: {
+    PartyName: {
         type: String,
-        required: true
+        maxlength: 60
     },
-    CINNO: {
-        type: Number,
-        required: true
+    RGROUP: {
+        type: Number,ref: 'AccMaster',
+        maxlength: 5,
+        //required: true
     },
-    Country: {
-        type: String,
-        required: true
+    YR_OB:{type:Number},
+    TOT_DR:{type:Decimal128},
+    TOT_CR:{type:Decimal128},
+    SCHEDULE:{
+        type:String,
+        maxlength:1
     },
-    GST_TIN: {
-        type: Number,
-        required: true
+    SUMMARY:{
+        type:String,
+        maxlength:1
     },
-    STATE_CODE: {
-        type: Number,
-        required: true
+    BUDGET:{
+        type:Number,
     },
-    Distance: {
-        type: String,
-        required: true
+    SummaryPrint:{  type: Boolean,
+        default:false,
+        // required:true
     },
-},
-    {
-        timestamps: true
-    }
-);
+    Principle:{
+        type:Decimal128,
+        
+    },
+    Interest:{
+        type:Decimal128,
+    },
+    aLock:{
+        type:Boolean,
+    },
+    DepPer:{
+        type:Decimal128,
+    },
+    AccumulatedDep:{
+        type:Decimal128,
+    },
+    tmpTot_Dr:{
+        type:Decimal128,
+    },
+    tmpTot_Cr:{
+        type:Decimal128,
+    },
+    tmpyr_ob:{
+        type:Decimal128
 
-module.exports = mongoose.model("AccountMaster", AccountMasterSchema);
+    },
+    userId:{
+        type:String,
+        // required:true
+    },
+    CompanyCode:{
+        type:String,
+        // required:true
+    }
+},
+{
+    timestamps: true
+});
+AccountMasterSchema.pre('save', async function(next) {
+    if (!this.isNew) {
+        // If the document is not new, do not increment PartyCode
+        return next();
+    }
+
+    try {
+        // Find the highest PartyCode value in the collection
+        const highestParty = await this.constructor.findOne({}, 'PartyCode').sort('-PartyCode').exec();
+
+        let nextPartyCode;
+        if (highestParty && highestParty.PartyCode) {
+            // Extract the numeric part of the highest PartyCode and increment by 1
+            const highestCodeNumber = parseInt(highestParty.PartyCode);
+            nextPartyCode = (highestCodeNumber + 1).toString().padStart(3, '0'); // Pad with leading zeros if necessary
+        } else {
+            // Set PartyCode to '001' if no existing PartyCode found
+            nextPartyCode = '001';
+        }
+
+        this.PartyCode = nextPartyCode;
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
+
+
+module.exports = mongoose.model("AccMaster", AccountMasterSchema);

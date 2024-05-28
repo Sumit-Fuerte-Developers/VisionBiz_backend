@@ -8,6 +8,7 @@ const verifyToken = require("../middleware/verifyToken");
 TextMasterrouter.post('/add_text_master',verifyToken, TextMasterController.createAddTextMaster);
 TextMasterrouter.patch('/edit_text_master/:id',verifyToken, TextMasterController.editAddTextMaster);
 TextMasterrouter.get('/show_text_master/',verifyToken, TextMasterController.getAddTextMaster);
+TextMasterrouter.get('/show_text_master/:id',verifyToken, TextMasterController.getAddTextMasterById);
 TextMasterrouter.delete('/delete_text_master/:id',verifyToken, TextMasterController.deleteAddTextMaster);
 
 

@@ -2,7 +2,7 @@ const express = require('express');
 const Transporterrouter = express.Router();
 const transporterController = require('../controllers/transporter_master_controller');
 const verifyToken = require("../middleware/verifyToken");
-// Route to create a new transporter
+// Route to create a new transportera
 Transporterrouter.post('/create_transporters',verifyToken, transporterController.createTransporter);
 
 // Get all transporters

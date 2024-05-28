@@ -8,6 +8,7 @@ const verifyToken = require("../middleware/verifyToken");
 AreaMasterrouter.post('/add_area_master',verifyToken, AreaMasterController.createAddAreaMaster);
 AreaMasterrouter.patch('/edit_area_master/:id',verifyToken, AreaMasterController.editAddAreaMaster);
 AreaMasterrouter.get('/show_area_master/',verifyToken, AreaMasterController.getAddAreaMaster);
+AreaMasterrouter.get('/show_area_master/:id',verifyToken, AreaMasterController.getAddAreaMasterbyid);
 AreaMasterrouter.delete('/delete_area_master/:id', verifyToken,AreaMasterController.deleteAddAreaMaster);
 
 

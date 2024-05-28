@@ -4,7 +4,7 @@ const ProductGroupMasterController = require('../controllers/product_groups_mast
 const verifyToken = require("../middleware/verifyToken");
 
 // Create a new StoreMaster
-ProductGroupMasterRoute.post('/create_product_group', verifyToken, ProductGroupMasterController.createProductGroupMaster);
+ProductGroupMasterRoute.post('/create_product_group', ProductGroupMasterController.createProductGroupMaster);
 
 // Get all StoreMaster
 ProductGroupMasterRoute.get('/show_product_group', verifyToken, ProductGroupMasterController.getAllProductGroupMasters);

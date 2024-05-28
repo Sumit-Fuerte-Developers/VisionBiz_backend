@@ -6,7 +6,7 @@ const ProductGroupMasterController = {
         try {
             const newProductGroupMaster = new ProductGroupMaster(req.body);
             await newProductGroupMaster.save();
-            res.status(201).json(newProductGroupMaster);
+            res.status(201).json({ message: 'Product Group Master created successfully', data: newProductGroupMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -45,7 +45,7 @@ const ProductGroupMasterController = {
             if (!updatedProductGroupMaster) {
                 return res.status(404).json({ error: 'Product Group Master not found' });
             }
-            res.status(200).json(updatedProductGroupMaster);
+            res.status(200).json({ message: 'Product Group Master updated successfully', data: updatedProductGroupMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });

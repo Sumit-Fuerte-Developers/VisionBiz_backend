@@ -7,7 +7,7 @@ const SubAccountMasterSchema = new mongoose.Schema(
             required: true
         },
         Opening: {
-            type: Boolean,
+            type: String,
             required: true
         },
     },

@@ -13,7 +13,7 @@ DespatchFormRoute.get('/show_despatch',verifyToken, DespatchFormController.getAl
 DespatchFormRoute.get('/show_despatch/:id',verifyToken, DespatchFormController.getDespatchFormById);
 
 // Update an DespatchForm by ID
-DespatchFormRoute.patch('/edit_despatch/:id',verifyToken, DespatchFormController.updateDespatchFormById);
+DespatchFormRoute.put('/edit_despatch/:id',verifyToken, DespatchFormController.updateDespatchFormById);
 
 // Delete an DespatchForm by ID
 DespatchFormRoute.delete('/delete_despatch/:id',verifyToken, DespatchFormController.deleteDespatchFormById);

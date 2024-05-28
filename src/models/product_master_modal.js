@@ -3,155 +3,206 @@ const Schema = mongoose.Schema;
 
 const ProductMasterSchema = new mongoose.Schema(
     {
-        Item_Code: {
+        ItemCode: {
             type: String,
+            maxlength:50,
             required: true
         },
-        Description: {
+        ItemName: {
             type: String,
+            maxlength:50,
             required: true
         },
-        Group: {
-            type: Schema.Types.ObjectId,
-            ref: 'ProductGroupMaster',
-            required: true,
+        ProdGroupCode: {
+            type:String,
+            ref: 'ProdGroupMaster',
+          
         },
-        Class: {
-            type: Schema.Types.ObjectId,
-            ref: 'ProductClass',
-            required: true,
+        ProdGroupName:{
+            type:String,
+            ref: 'ProdGroupMaster',
         },
-        Measurement: {
-            type: Schema.Types.ObjectId,
-            ref: 'Measurement',
-            required: true,
+        UOM: {
+           type:String,
+           maxlength:10
         },
-        Purchase_Rate: {
-            type: Number,
-            required: true
+        SalRate:{
+            type:Number
         },
-        Sales_Rate: {
-            type: Number,
-            required: true
+        PurRate:{
+            type:Number
         },
-        List_Price: {
-            type: Number,
-            required: true
+        DR1:{
+            type:String,
+            maxlength:10
         },
-        Packing_Size: {
-            type: Number,
-            required: true
+        R1:{
+            type:Number,
+           
         },
-        Margin: {
-            type: Number,
-            required: true
+        DR1:{
+            type:String,
+            maxlength:10
         },
-        Minimum_Qty: {
-            type: Number,
-            required: true
+        R1:{
+            type:Number,
+           
         },
-        Maximum_Qty: {
-            type: Number,
-            required: true
+
+        ListPrice:{
+            type:Number
         },
-        Lead_Time: {
-            type: String,
-            required: true
+        PackSize:{
+            type:Number
         },
-        Days: {
-            type: Number,
-            required: true
+        MinQty:{
+            type:Number
         },
-        Re_Order_Qty: {
-            type: Number,
-            required: true
+        MinMax:{
+            type:Number
         },
-        Discount_Sale: {
-            type: String,
-            required: true
+        ReOrderQty:{
+            type:Number
         },
-        Discount_Purchase: {
-            type: Number,
-            required: true
+        LeadTime:{
+            type:Number
         },
-        Excise: {
-            type: Number,
-            required: true
+        DiscSale:{
+            type:Number
         },
-        HSN: {
-            type: Schema.Types.ObjectId,
-            ref: 'HSN',
-            required: true,
+        DiscPur:{
+            type:Number
         },
-        Assess_Rate: {
-            type: Number,
-            required: true
+        Chapter:{
+            type:String,
+            maxlength:20
         },
-        Prod_Memo: {
-            type: String,
-            required: true
+        AssRate:{
+            type:Number,
+            
         },
-        Location: {
-            type: String,
-            required: true
+        ExcisePer:{
+            type:Number,
         },
-        Tax_Code: {
-            type: Schema.Types.ObjectId,
-            ref: 'TexCode',
-            required: true,
+        MarginPer:{
+            type:Number
         },
-        IG_Tax_Code: {
-            type: String,
-            required: true,
+        ProdClassCode:{
+            type:String,
+            ref: 'ProdClassMaster',
         },
-        Closing: {
-            type: Number,
-            required: true,
+        ProdClassName:{
+            type:String,
+            ref:'ProdClassMaster',
         },
-        Mfg_Code: {
-            type: Number,
-            required: true,
+        Location:{
+            type:String,
+            maxlength:15
         },
-        Mfg_Code2: {
-            type: Number,
-            required: true,
+        PhotoPath:{
+            type:String,
+            maxlength:100
         },
-        Mfg_Code3: {
-            type: Number,
-            required: true,
+        ProdMemo:{
+            type:String,
+
         },
-        Mfg_Code4: {
-            type: Number,
-            required: true,
+        MfgCode:{
+            type:String,
+            maxlength:50
         },
-        Mfg_Code5: {
-            type: Number,
-            required: true,
+        MfgVariant:{
+            type:String,
+            maxlength:50
         },
-        Rate_Per: {
-            type: String,
-            required: true,
+        PriceListNo:{
+            type:String,
+            maxlength:50
         },
-        Mfg_Variant: {
-            type: String,
-            required: true,
+        SecondUnit:{
+            type:String,
+            maxlength:10
         },
-        Price_List_No: {
-            type: String,
-            required: true,
+        SecondSalRate:{
+            type:Number
         },
-        Opening_Stock: {
-            type: Number,
-            required: true,
+        SecondPurRate:{
+            type:Number
         },
-        Stock_Value: {
-            type: String,
-            required: true,
+        Maths:{
+            type:String,
+            maxlength:1
         },
-        Extra_Sales_Rate: {
-            type: String,
-            required: true,
+        Conversion:{
+            type:Number,
         },
+        WantSecondQty:{
+            type:Boolean,
+
+        },
+        TaxCode:{
+            type:String,
+            maxlength:3
+        },
+        PartyCode:{
+            type:String,
+            maxlength:5
+        },
+        MfgCode2:{
+            type:String,
+            maxlength:50
+
+        },
+        MfgCode3:{
+            type:String,
+            maxlength:50
+
+        },
+        MfgCode4:{
+            type:String,
+            maxlength:50
+
+        },
+        MfgCode5:{
+            type:String,
+            maxlength:50
+
+        },
+        Lock:{
+            type:Boolean,
+        },
+        DiscA:{
+            type: mongoose.Decimal128,
+        },
+        DiscB:{
+            type: mongoose.Decimal128,
+        },
+        DiscC:{
+            type: mongoose.Decimal128,
+        },
+        DiscD:{
+            type: mongoose.Decimal128,
+        },
+        RatePer:{
+            type: mongoose.Decimal128,
+        },
+        IGSTaxCode:{
+            type:String,
+            maxlength:3
+        },
+        LPRATE:{
+            type: mongoose.Decimal128,
+        },
+        STKEFF:{
+            type:Boolean
+        },
+        DiscE:{
+            type: mongoose.Decimal128,
+        },
+        DiscF:{
+            type: mongoose.Decimal128,
+            },
+        
     },
     {
         timestamps: true

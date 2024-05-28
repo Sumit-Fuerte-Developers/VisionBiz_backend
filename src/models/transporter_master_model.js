@@ -29,7 +29,7 @@ const TransporterSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    state:  {
+    email:  {
         type: String,
         required: true
     },
@@ -39,14 +39,16 @@ const TransporterSchema = new mongoose.Schema({
     },
     tel1:  {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
     tel2:  {
         type: Number,
-        required: true
+        // required: true
+        default: 0,
     },
-    mobile1:{ type: Number, unique: true, required: true },
-    mobile2: { type: Number, unique: true, required: true },
+    mobile1:{ type: Number, unique: true, required: true,},
+    mobile2: { type: Number, unique: true, default: 0,},
     
    
     

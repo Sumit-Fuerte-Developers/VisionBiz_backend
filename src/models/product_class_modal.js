@@ -1,20 +1,41 @@
 const mongoose = require("mongoose");
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const ProductClassSchema = new mongoose.Schema(
     {
-        Class_Name: {
+        ProdClassCode:{
+            type:Number
+        },
+
+        ProdClassName: {
             type: String,
+            maxlength: 50,
             required: true
         },
         Chapter: {
             type: String,
-            required: true
+            maxlength: 50,
+            
         },
+        IMEITracking:{
+            type:Boolean,
+        },
+        userId:{
+            type:String,
+            required:true
+        },
+        CompanyCode:{
+            type:String,
+            required:true
+        }
 
     },
     {
         timestamps: true
     }
 );
+ProductClassSchema.plugin(AutoIncrement, { inc_field: 'ProdClassCode' });
 
-module.exports = mongoose.model("ProductClass", ProductClassSchema);
+// Create a composite index on Doc_No and SrNo to enforce uniqueness
+ProductClassSchema.index({ ProdClassCode: 1,}, { unique: true });
+
+module.exports = mongoose.model("ProdClassMaster", ProductClassSchema);

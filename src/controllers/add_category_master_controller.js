@@ -41,8 +41,17 @@ const CategoryMasterController = {
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
-
-
+  },
+  getAddcategoryMasterById : async (req, res) => {
+    try {
+      const allAddCategoryMaster = await AddCategoryMaster.findById(req.params.id);
+      if (!allAddCategoryMaster) {
+        return res.status(404).json({ message: 'Salesman not found' });
+      }
+      res.json(allAddCategoryMaster);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
   },
 
   deleteAddCategoryMaster:async(req,res)=>{

@@ -41,8 +41,15 @@ const AreaMasterController = {
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
+  },
 
-
+  getAddAreaMasterbyid:async(req,res)=>{
+    try {
+        const allAddAreaMaster = await AddAreaMaster.findById(req.params.id);
+        res.json({ message: 'All AddAreaMaster data', data: allAddAreaMaster });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
   },
 
   deleteAddAreaMaster:async(req,res)=>{

@@ -1,16 +1,47 @@
 const ProductMaster = require('../models/product_master_modal');
-
+const ProdGroupMaster =require('../models/product_groups_master_modal');
+const ProdClassMaster =require('../models/product_class_modal')
 const ProductMasterController = {
     // Create a new ProductMaster
     createProductMaster: async (req, res) => {
         try {
-            const newProductMaster = new ProductMaster(req.body);
-            await newProductMaster.save();
-            res.status(201).json(newProductMaster);
+            const { ProdClassCode, ProdGroupCode, ...rest } = req.body;
+    
+            let prodGroup = null;
+            let prodClass = null;
+    
+            // Fetch the ProdGroupMaster and ProdClassMaster using ObjectId if provided
+            if (ProdGroupCode) {
+                prodGroup = await ProdGroupMaster.findById(ProdGroupCode);
+                if (!prodGroup) {
+                    return res.status(400).send({ error: 'Invalid ProdGroupCode ObjectId' });
+                }
+            }
+    
+            if (ProdClassCode) {
+                prodClass = await ProdClassMaster.findById(ProdClassCode);
+                if (!prodClass) {
+                    return res.status(400).send({ error: 'Invalid ProdClassCode ObjectId' });
+                }
+            }
+    
+            // Extract the necessary fields, including ProdGroupCode and ProdClassCode if available
+            const productData = {
+                ...rest,
+                ProdGroupCode: prodGroup ? prodGroup.ProdGroupCode : null,
+                ProdGroupName: prodGroup ? prodGroup.ProdGroupName : null,
+                ProdClassCode: prodClass ? prodClass.ProdClassCode : null,
+                ProdClassName: prodClass ? prodClass.ProdClassName : null
+            };
+    
+            const product = new ProductMaster(productData);
+    
+            await product.save();
+            res.status(201).send(product);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: 'Server error' });
+            res.status(400).send(error);
         }
+    
     },
 
     // Get all ProductMasters
@@ -45,7 +76,7 @@ const ProductMasterController = {
             if (!updatedProductMaster) {
                 return res.status(404).json({ error: 'ProductMaster not found' });
             }
-            res.status(200).json(updatedProductMaster);
+            res.status(200).json({ message: 'ProductMaster updated successfully', data: updatedProductMaster });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -59,7 +90,7 @@ const ProductMasterController = {
             if (!deletedProductMaster) {
                 return res.status(404).json({ error: 'ProductMaster not found' });
             }
-            res.status(200).json({ message: 'ProductMaster deleted successfully' });
+            res.status(200).json({ message: 'ProductMaster deleted successfully', });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });

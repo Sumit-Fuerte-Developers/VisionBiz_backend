@@ -41,8 +41,18 @@ const TextMasterController = {
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
+  },
 
-
+  getAddTextMasterById : async (req, res) => {
+    try {
+      const allAddTextMaster = await AddTextMaster.findById(req.params.id);
+      if (!allAddTextMaster) {
+        return res.status(404).json({ message: 'Salesman not found' });
+      }
+      res.json(allAddTextMaster);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
   },
 
   deleteAddTextMaster:async(req,res)=>{

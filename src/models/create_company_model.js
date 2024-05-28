@@ -26,11 +26,11 @@ const CreateCompanySchema = new mongoose.Schema({
     },
     addressLine2:  {
         type: String,
-        required: true
+        // required: true
     },
     addressLine3:  {
         type: String,
-        required: true
+        // required: true
     },
     city:  {
         type: String,
@@ -46,19 +46,21 @@ const CreateCompanySchema = new mongoose.Schema({
     },
     tel1:  {
         type: Number,
-        required: true
+        // required: true
     },
     tel2:  {
         type: Number,
-        required: true
+        // required: true
     },
     mobile1:{ type: Number, unique: true, required: true },
-    mobile2: { type: Number, unique: true, required: true },
+    mobile2: { type: Number, unique: true,
+        // required: true
+    },
     girorPanNo: String,
     emailId:{ type: String, unique: true, required: true },
     webAddress: String,
-    sntp: String,
-    port: String,
+    sntp: Number,
+    port: Number,
     password: String,
     tdsReg: String,
     tdsCircle: String,

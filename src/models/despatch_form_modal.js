@@ -12,11 +12,11 @@ const DespatchFormSchema = new mongoose.Schema(
         },
         Address2: {
             type: String,
-            required: true
+            // required: true
         },
         Address3: {
             type: String,
-            required: true
+            // required: true
         },
         City: {
             type: String,

@@ -6,7 +6,7 @@ const ProductClassController = {
         try {
             const newProductClass = new ProductClass(req.body);
             await newProductClass.save();
-            res.status(201).json(newProductClass);
+            res.status(201).json({ message: 'Product Class created successfully', data: newProductClass });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
@@ -45,7 +45,7 @@ const ProductClassController = {
             if (!updatedProductClass) {
                 return res.status(404).json({ error: 'Product Class not found' });
             }
-            res.status(200).json(updatedProductClass);
+            res.status(200).json({ message: 'Product Class updated successfully', data: updatedProductClass });
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Server error' });
