@@ -1,5 +1,5 @@
 const CreateCompany = require('../models/create_company_model');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 
 const CompanyLoginController = {
@@ -14,7 +14,7 @@ const CompanyLoginController = {
       }
 
       // Compare passwords
-      const passwordMatch = await bcrypt.compare(password, foundUser.password);
+      const passwordMatch = await argon2.compare(password, foundUser.password);
       if (!passwordMatch) {
         return res.status(401).json({ success: false, message: "Incorrect password!" });
       }

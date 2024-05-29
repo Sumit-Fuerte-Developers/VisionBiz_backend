@@ -1,5 +1,5 @@
 const UsersInfo = require('../models/user_modal');
-const bcrypt = require("bcrypt");
+const argon2 = require('argon2');
 const jwt = require("jsonwebtoken");
 
 const UsersController = {
@@ -42,7 +42,7 @@ const UsersController = {
           if (!foundUser) {
             return res.json({ success: false, message: "User not found!" });
           }
-          const passwordMatch = bcrypt.compareSync(password, foundUser.password);
+          const passwordMatch = argon2.compareSync(password, foundUser.password);
           if (!passwordMatch) {
             return res.json({ success: false, message: "Incorrect password!" });
           }
@@ -105,7 +105,7 @@ const UsersController = {
             // Check if the password is being modified
             if (req.body.password && req.body.password !== updatedUser.password) {
                 // Hash the new password
-                updatedUser.password = await bcrypt.hash(req.body.password, saltRounds);
+                updatedUser.password = await argon2.hash(req.body.password, saltRounds);
             }
 
             // Save the updated user

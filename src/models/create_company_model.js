@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 
 const CreateCompanySchema = new mongoose.Schema({
     companyName: {
@@ -84,10 +84,10 @@ CreateCompanySchema.pre('save', async function(next) {
         }
 
         // Generate a salt
-        const salt = await bcrypt.genSalt(10);
+        const salt = await argon2.genSalt(10);
 
         // Hash the password using the generated salt
-        const hashedPassword = await bcrypt.hash(this.password, salt);
+        const hashedPassword = await argon2.hash(this.password, salt);
 
         // Replace the plain password with the hashed password
         this.password = hashedPassword;
@@ -101,8 +101,8 @@ CreateCompanySchema.pre('findOneAndUpdate', async function(next) {
     try {
         const update = this.getUpdate();
         if (update.password) {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(update.password, salt);
+            const salt = await argon2.genSalt(10);
+            const hashedPassword = await argon2.hash(update.password, salt);
             update.password = hashedPassword;
         }
         next();

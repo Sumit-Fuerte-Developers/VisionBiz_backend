@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const argon2 = require('argon2');
 
 const saltRounds = 10;
 
@@ -36,7 +36,7 @@ UserInfoSchema.pre('save', function (next) {
     if (!user.isModified('password')) return next();
 
     // Generate a salt and hash the password
-    bcrypt.hash(user.password, saltRounds, function (err, hash) {
+    argon2.hash(user.password, saltRounds, function (err, hash) {
         if (err) return next(err);
         user.password = hash;
         next();
