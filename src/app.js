@@ -14,14 +14,12 @@ app.set('view engine', 'ejs');
 app.use(cors());
 
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.vahtrpp.mongodb.net/visonbiz?retryWrites=true&w=majority&appName=Cluster0`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+ 
 })
 .then(async () => {
   console.log('Connection successful');
-  app.get('/', (req, res) => {
-    return res.render('homepage');
-  });
+ 
+  
 }).catch((err) => {
   console.error('Connection error:', err);
 });
